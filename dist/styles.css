@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    width: 100vw;
+    height: 100vh;
+}
+.headboard {
+    grid-column: 1 / 7;
+    background-color: gray;
+}
+.dashboard {
+    grid-row: 2 / 7;
+    background-color: aliceblue;
+}
+.content {
+    grid-row: 2 / 7;
+    grid-column: 2 / 7;
+    background-color: aquamarine;
+}
