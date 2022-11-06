@@ -1,6 +1,8 @@
 :root {
     --text-main-color: rgb(0, 0, 0);
     --color-main: rgb(200, 200, 200);
+    --color-light: rgb(230, 230, 230);
+    --color-dark: rgb(170, 170, 170);
 }
 * {
     box-sizing: border-box;
@@ -11,6 +13,14 @@
 .text-large {
     color: var(--text-main-color);
     font-size: 80px;
+}
+.text-mid {
+    color: var(--text-main-color);
+    font-size: 30px;
+}
+
+.pad-left {
+    padding-left: 15%;
 }
 
 .grid-container {
@@ -26,16 +36,16 @@
 
 .headboard {
     grid-column: 1 / 7;
-    background-color: var(--color-main);
+    background-color: var(--color-dark);
     align-items: center;
-    padding-left: 20%;
 }
 .dashboard {
     grid-row: 2 / 7;
-    background-color: aliceblue;
+    background-color: var(--color-main);
+    flex-direction: column;
 }
 .content {
     grid-row: 2 / 7;
     grid-column: 2 / 7;
-    background-color: aquamarine;
+    background-color: var(--color-light);
 }
