@@ -19,6 +19,12 @@
     font-size: 30px;
 }
 
+.button-main {
+    width: 20vh;
+    height: 5vh;
+    font-size: 200%;
+}
+
 .pad-left {
     padding-left: 15%;
 }
@@ -39,11 +45,18 @@
     background-color: var(--color-dark);
     align-items: center;
 }
+
 .dashboard {
     grid-row: 2 / 7;
     background-color: var(--color-main);
     flex-direction: column;
 }
+.dashboard > div {
+    flex-direction: column;
+    margin: 10%;
+    gap: 1vh;
+}
+
 .content {
     grid-row: 2 / 7;
     grid-column: 2 / 7;
