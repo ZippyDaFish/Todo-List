@@ -1,1 +1,1 @@
-console.log("Everything seems to be working");
+(()=>{function e(){console.log("UwU")}console.log("Everything seems to be working"),document.getElementById("inbox-btn").addEventListener("click",e),document.getElementById("today-btn").addEventListener("click",e),document.getElementById("week-btn").addEventListener("click",e),document.getElementById("project-add-btn").addEventListener("click",e)})();

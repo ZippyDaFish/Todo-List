@@ -20,9 +20,11 @@
 }
 
 .button-main {
-    width: 20vh;
+    width: 100%;
     height: 5vh;
     font-size: 200%;
+    border: none;
+    background-color: var(--color-light);
 }
 
 .pad-left {
