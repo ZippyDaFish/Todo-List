@@ -19,12 +19,20 @@
     font-size: 30px;
 }
 
-.button-main {
+.rounded-corners {
+    border-radius: 20px;
+}
+
+.button-dash {
     width: 100%;
     height: 5vh;
     font-size: 200%;
     border: none;
     background-color: var(--color-light);
+}
+.button-todo {
+    font-size: 200%;
+    border: none;
 }
 
 .pad-left {
@@ -69,6 +77,7 @@
     background-color: var(--color-dark);
     width: 80%;
     justify-content: space-between;
-    margin: 5vh;
+    margin-top: 4vh;
+    margin-left: 2vw;
     padding: 2vh;
 }
