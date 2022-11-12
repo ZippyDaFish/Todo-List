@@ -11,7 +11,7 @@ const contentCreation = (() => {
     const createTodo = () => {
         //Todo
         //Todo creation can be linked to whatever tab user is currently on
-        //Add todo button will no be displayed within Today and This Week tabs
+        //Add todo button will not be displayed within Today and This Week tabs
         console.log("New Todo");
     };
     return{createProject, createTodo};
@@ -26,11 +26,15 @@ const contentDisplay = (() => {
     const displayToday = () => {
         //Todo
         console.log("Nav to Today tab");
-    }
+    };
     const displayWeekly = () => {
         //Todo
         console.log("Nav to Weekly tab");
-    }
+    };
+    const displayProject = (project) => {
+        //Todo
+        //Navs to given project and displays all Todos within
+    };
     return{displayInbox, displayToday, displayWeekly};
 })();
 
