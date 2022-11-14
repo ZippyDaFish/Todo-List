@@ -36,7 +36,26 @@ const contentDisplay = (() => {
         //Navs to given project and displays all Todos within
         console.log("Nav to " + project);
     };
-    return{displayInbox, displayToday, displayWeekly, displayProject};
+    const displayProjectAdd = (add) => {
+        addDiv = document.getElementById('project-add-div');
+        addButton = `
+        <button id="project-add-btn" class="button-dash rounded-corners">+ Add</button>`
+        confirmationTemplate = `
+        <input type="text" id="project-add-input">
+        <div>
+            <button id="project-add-btn-confirm" class="button-dash-secondary rounded-corners">Confirm</button>
+            <button id="project-add-btn-cancel" class="button-dash-secondary rounded-corners">Cancel</button>
+        </div>`
+        if(!add){
+            addDiv.innerHTML = addButton;
+            document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
+        }
+        else if(add){
+            addDiv.innerHTML = confirmationTemplate;
+            document.getElementById('project-add-btn-confirm').addEventListener('click', contentCreation.createProject)
+        }
+    };
+    return{displayInbox, displayToday, displayWeekly, displayProject, displayProjectAdd};
 })();
 
 // event listeners for dashboard tabs
@@ -45,5 +64,5 @@ document.getElementById('today-btn').addEventListener('click', contentDisplay.di
 document.getElementById('week-btn').addEventListener('click', contentDisplay.displayWeekly);
 document.getElementById('0-project-btn').addEventListener('click', function(){ contentDisplay.displayProject(0)});
 // event listener for adding a new project and a new todo
-document.getElementById('project-add-btn').addEventListener('click', contentCreation.createProject);
+document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
 document.getElementById('todo-add-btn').addEventListener('click', contentCreation.createTodo);
