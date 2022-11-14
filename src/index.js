@@ -37,6 +37,7 @@ const contentDisplay = (() => {
         console.log("Nav to " + project);
     };
     const displayProjectAdd = (add) => {
+        console.log(add);
         addDiv = document.getElementById('project-add-div');
         addButton = `
         <button id="project-add-btn" class="button-dash rounded-corners">+ Add</button>`
@@ -47,12 +48,15 @@ const contentDisplay = (() => {
             <button id="project-add-btn-cancel" class="button-dash-secondary rounded-corners">Cancel</button>
         </div>`
         if(!add){
+            console.log("Displaying add button");
             addDiv.innerHTML = addButton;
-            document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
+            document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(true)});
         }
         else if(add){
+            console.log("Displaying confirmation tempate");
             addDiv.innerHTML = confirmationTemplate;
-            document.getElementById('project-add-btn-confirm').addEventListener('click', contentCreation.createProject)
+            document.getElementById('project-add-btn-confirm').addEventListener('click', contentCreation.createProject);
+            document.getElementById('project-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
         }
     };
     return{displayInbox, displayToday, displayWeekly, displayProject, displayProjectAdd};
@@ -64,5 +68,5 @@ document.getElementById('today-btn').addEventListener('click', contentDisplay.di
 document.getElementById('week-btn').addEventListener('click', contentDisplay.displayWeekly);
 document.getElementById('0-project-btn').addEventListener('click', function(){ contentDisplay.displayProject(0)});
 // event listener for adding a new project and a new todo
-document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
+document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(true)});
 document.getElementById('todo-add-btn').addEventListener('click', contentCreation.createTodo);
