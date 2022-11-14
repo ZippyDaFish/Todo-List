@@ -4,9 +4,12 @@ let todos = [];
 
 // Handles creation of content and links to storage of content
 const contentCreation = (() => {
-    const createProject = () => {
-        //Todo
-        console.log("New Project");
+    const createProject = (projectName) => {
+        console.log("New Project: " + projectName);
+        const newProject = document.createElement("button");
+        newProject.classList.add("button-dash", "rounded-corners");
+        newProject.innerText = projectName;
+        document.getElementById('projects-container').insertBefore(newProject, document.getElementById('project-add-div'));
     };
     const createTodo = () => {
         //Todo
@@ -37,7 +40,6 @@ const contentDisplay = (() => {
         console.log("Nav to " + project);
     };
     const displayProjectAdd = (add) => {
-        console.log(add);
         addDiv = document.getElementById('project-add-div');
         addButton = `
         <button id="project-add-btn" class="button-dash rounded-corners">+ Add</button>`
@@ -48,14 +50,16 @@ const contentDisplay = (() => {
             <button id="project-add-btn-cancel" class="button-dash-secondary rounded-corners">Cancel</button>
         </div>`
         if(!add){
-            console.log("Displaying add button");
             addDiv.innerHTML = addButton;
             document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(true)});
         }
         else if(add){
-            console.log("Displaying confirmation tempate");
             addDiv.innerHTML = confirmationTemplate;
-            document.getElementById('project-add-btn-confirm').addEventListener('click', contentCreation.createProject);
+            document.getElementById('project-add-btn-confirm').addEventListener('click', function(){
+                projectName = document.getElementById('project-add-input').value;
+                contentCreation.createProject(projectName);
+                contentDisplay.displayProjectAdd(false);
+            });
             document.getElementById('project-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
         }
     };
