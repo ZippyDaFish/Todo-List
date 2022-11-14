@@ -57,6 +57,10 @@ const contentDisplay = (() => {
             addDiv.innerHTML = confirmationTemplate;
             document.getElementById('project-add-btn-confirm').addEventListener('click', function(){
                 projectName = document.getElementById('project-add-input').value;
+                if(projectName == ""){
+                    alert("Project Name Cannot be Empty");
+                    return;
+                }
                 contentCreation.createProject(projectName);
                 contentDisplay.displayProjectAdd(false);
             });
