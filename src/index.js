@@ -5,7 +5,6 @@ let todos = [];
 // Handles creation of content and links to storage of content
 const contentCreation = (() => {
     const createProject = (projectName) => {
-        console.log("New Project: " + projectName);
         const newProject = document.createElement("button");
         newProject.classList.add("button-dash", "rounded-corners");
         newProject.innerText = projectName;
@@ -74,7 +73,6 @@ const contentDisplay = (() => {
 document.getElementById('inbox-btn').addEventListener('click', contentDisplay.displayInbox);
 document.getElementById('today-btn').addEventListener('click', contentDisplay.displayToday);
 document.getElementById('week-btn').addEventListener('click', contentDisplay.displayWeekly);
-document.getElementById('0-project-btn').addEventListener('click', function(){ contentDisplay.displayProject(0)});
 // event listener for adding a new project and a new todo
 document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(true)});
 document.getElementById('todo-add-btn').addEventListener('click', contentCreation.createTodo);
