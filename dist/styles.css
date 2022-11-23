@@ -24,10 +24,14 @@
 }
 
 .button-main {
-    font-size: 200%;
+    font-size: 190%;
     border: none;
     background-color: var(--color-light);
     height: 5vh;
+}
+.button-main:hover {
+    background-color: var(--color-dark);
+    transition: 0.25s;
 }
 
 .button-dash {
@@ -35,10 +39,6 @@
 }
 .button-dash-secondary {
     width: 45%;
-    height: 5vh;
-    font-size: 150%;
-    border: none;
-    background-color: var(--color-light);
 }
 
 .button-todo {
