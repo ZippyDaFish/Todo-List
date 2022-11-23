@@ -3,20 +3,24 @@ let projects = [];
 let todos = [];
 
 // Creates project objects
-function createProjectObject(name, id){
+function createProjectObject(name){
     return{
         projectName: name,
-        projectId: id
     };
 }
 
 // Handles creation of content and links to storage of content
 const contentCreation = (() => {
     const createProject = (projectName) => {
+        //create js project
+        const projectObject = createProjectObject(projectName);
+        projects.push(projectObject);
+        //create HTML project
         const newProject = document.createElement("button");
         newProject.classList.add("button-dash", "rounded-corners");
         newProject.innerText = projectName;
         document.getElementById('projects-container').insertBefore(newProject, document.getElementById('project-add-div'));
+        newProject.addEventListener('click', function(){contentDisplay.displayProject(projectObject)});
     };
     const createTodo = () => {
         //Todo
