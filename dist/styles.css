@@ -23,12 +23,15 @@
     border-radius: 20px;
 }
 
-.button-dash {
-    width: 100%;
-    height: 5vh;
+.button-main {
     font-size: 200%;
     border: none;
     background-color: var(--color-light);
+    height: 5vh;
+}
+
+.button-dash {
+    width: 100%;
 }
 .button-dash-secondary {
     width: 45%;
