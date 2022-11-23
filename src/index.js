@@ -48,7 +48,7 @@ const contentDisplay = (() => {
     const displayProject = (project) => {
         //Todo
         //Navs to given project and displays all Todos within
-        console.log("Nav to " + project);
+        console.log("Nav to " + project.projectName);
     };
     const displayProjectAdd = (add) => {
         addDiv = document.getElementById('project-add-div');
