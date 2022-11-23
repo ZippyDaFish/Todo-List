@@ -2,12 +2,25 @@ let inbox = [];
 let projects = [];
 let todos = [];
 
+// Creates project objects
+function createProject(name, id){
+    return{
+        projectName: name,
+        projectId: id
+    };
+}
+
+projects.push(createProject('womp', 1));
+projects.push(createProject('werp', 9));
+console.log(projects);
+
 // Handles creation of content and links to storage of content
 const contentCreation = (() => {
     const createProject = (projectName) => {
         const newProject = document.createElement("button");
         newProject.classList.add("button-dash", "rounded-corners");
         newProject.innerText = projectName;
+        projects.push(newProject);
         document.getElementById('projects-container').insertBefore(newProject, document.getElementById('project-add-div'));
     };
     const createTodo = () => {
