@@ -17,7 +17,7 @@ const contentCreation = (() => {
         projects.push(projectObject);
         //create HTML project
         const newProject = document.createElement("button");
-        newProject.classList.add("button-dash", "rounded-corners");
+        newProject.classList.add("button-main", "button-dash", "rounded-corners");
         newProject.innerText = projectName;
         document.getElementById('projects-container').insertBefore(newProject, document.getElementById('project-add-div'));
         newProject.addEventListener('click', function(){contentDisplay.displayProject(projectObject)});
@@ -53,12 +53,12 @@ const contentDisplay = (() => {
     const displayProjectAdd = (add) => {
         addDiv = document.getElementById('project-add-div');
         addButton = `
-        <button id="project-add-btn" class="button-dash rounded-corners">+ Add</button>`
+        <button id="project-add-btn" class="button-main button-dash rounded-corners">+ Add</button>`
         confirmationTemplate = `
         <input type="text" id="project-add-input">
         <div>
-            <button id="project-add-btn-confirm" class="button-dash-secondary rounded-corners">Confirm</button>
-            <button id="project-add-btn-cancel" class="button-dash-secondary rounded-corners">Cancel</button>
+            <button id="project-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
+            <button id="project-add-btn-cancel" class="button-main button-dash-secondary rounded-corners">Cancel</button>
         </div>`
         if(!add){
             addDiv.innerHTML = addButton;
