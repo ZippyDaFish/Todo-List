@@ -49,22 +49,26 @@ const contentCreation = (() => {
 
 // Handles displaying content onto the webpage
 const contentDisplay = (() => {
+    let currentTab = "Inbox";
     const displayInbox = () => {
         //Todo
-        console.log("Nav to Inbox tab");
+        console.log("Current tab:", currentTab);
     };
     const displayToday = () => {
         //Todo
-        console.log("Nav to Today tab");
+        currentTab = "Today"
+        console.log("Current tab:", currentTab);
     };
     const displayWeekly = () => {
         //Todo
-        console.log("Nav to Weekly tab");
+        currentTab = "Weekly"
+        console.log("Current tab:", currentTab);
     };
     const displayProject = (project) => {
         //Todo
         //Navs to given project and displays all Todos within
-        console.log("Nav to " + project.projectName);
+        currentTab = project.projectName;
+        console.log("Current tab:", currentTab);
     };
     const displayProjectAdd = (add) => {
         addDiv = document.getElementById('project-add-div');
@@ -94,7 +98,7 @@ const contentDisplay = (() => {
             document.getElementById('project-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
         }
     };
-    return{displayInbox, displayToday, displayWeekly, displayProject, displayProjectAdd};
+    return{currentTab, displayInbox, displayToday, displayWeekly, displayProject, displayProjectAdd};
 })();
 
 // event listeners for dashboard tabs
