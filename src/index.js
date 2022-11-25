@@ -2,10 +2,26 @@ let inbox = [];
 let projects = [];
 let todos = [];
 
+const todoTemplate = `
+    <div class="todo-container flex-container rounded-corners">
+    <input type="checkbox">
+    <p class="text-mid">Title</p>
+    <p class="text-mid">Description...</p>
+    <p class="text-mid">Date</p>
+    </div>
+    `;
+
 // Creates project objects
 function createProjectObject(name){
     return{
-        projectName: name,
+        projectName: name
+    };
+}
+function createTodoObject(title, date, status){
+    return{
+        title: title,
+        date: date,
+        status: status
     };
 }
 
