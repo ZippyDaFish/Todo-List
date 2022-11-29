@@ -18,7 +18,8 @@ const todoTemplate = `
 // Creates project objects
 function createProjectObject(name){
     return{
-        projectName: name
+        projectName: name,
+        projectTodos: []
     };
 }
 function createTodoObject(title, date, status){
