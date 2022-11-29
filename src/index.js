@@ -1,9 +1,9 @@
-let projects = [];
 let todos = [];
 let tabs = {
     inbox: [],
     today: [],
-    weekly: []
+    weekly: [],
+    projects: []
 };
 
 const todoTemplate = `
@@ -34,7 +34,7 @@ const contentCreation = (() => {
     const createProject = (projectName) => {
         //create js project
         const projectObject = createProjectObject(projectName);
-        projects.push(projectObject);
+        tabs.projects.push(projectObject);
         //create HTML project
         const newProject = document.createElement("button");
         newProject.classList.add("button-main", "button-dash", "rounded-corners");
@@ -53,26 +53,26 @@ const contentCreation = (() => {
 
 // Handles displaying content onto the webpage
 const contentDisplay = (() => {
-    let currentTab = "Inbox";
+    let currentTab = tabs.inbox;
     const displayInbox = () => {
         //Todo
-        currentTab = "Inbox"
+        currentTab = tabs.inbox;
         console.log("Current tab:", currentTab);
     };
     const displayToday = () => {
         //Todo
-        currentTab = "Today"
+        currentTab = tabs.today;
         console.log("Current tab:", currentTab);
     };
     const displayWeekly = () => {
         //Todo
-        currentTab = "Weekly"
+        currentTab = tabs.weekly;
         console.log("Current tab:", currentTab);
     };
     const displayProject = (project) => {
         //Todo
         //Navs to given project and displays all Todos within
-        currentTab = project.projectName;
+        currentTab = tabs.projects;
         console.log("Current tab:", currentTab);
     };
     const displayProjectAdd = (add) => {
