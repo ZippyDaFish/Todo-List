@@ -52,6 +52,7 @@ const contentDisplay = (() => {
     let currentTab = "Inbox";
     const displayInbox = () => {
         //Todo
+        currentTab = "Inbox"
         console.log("Current tab:", currentTab);
     };
     const displayToday = () => {
