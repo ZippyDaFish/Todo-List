@@ -1,6 +1,10 @@
-let inbox = [];
 let projects = [];
 let todos = [];
+let tabs = {
+    inbox: [],
+    today: [],
+    weekly: []
+};
 
 const todoTemplate = `
     <div class="todo-container flex-container rounded-corners">
