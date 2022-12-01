@@ -39,6 +39,7 @@ const contentCreation = (() => {
         //create HTML project
         const newProjectDiv = document.createElement("div");
         document.getElementById('projects-container').insertBefore(newProjectDiv, document.getElementById('project-add-div'));
+        newProjectDiv.classList.add("project-container", "flex-container");
         //create project button
         const newProject = document.createElement("button");
         newProject.classList.add("button-main", "rounded-corners", "button-project");

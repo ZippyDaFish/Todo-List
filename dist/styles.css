@@ -45,11 +45,16 @@
     font-size: 200%;
     border: none;
 }
+
 .button-project {
     width: 70%;
 }
 .button-project-delete {
     width: 20%;
+}
+.button-project-delete:hover {
+    background-color: red;
+    transition: 0.25s;
 }
 
 .pad-left {
@@ -82,6 +87,9 @@
     flex-direction: column;
     margin: 10%;
     gap: 1vh;
+}
+.project-container {
+    justify-content: space-around;
 }
 #project-add-div {
     flex-direction: column;
