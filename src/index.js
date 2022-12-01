@@ -55,19 +55,9 @@ const contentCreation = (() => {
 // Handles displaying content onto the webpage
 const contentDisplay = (() => {
     let currentTab = tabs.inbox;
-    const displayInbox = () => {
+    const displayTab = (tab) => {
         //Todo
-        currentTab = tabs.inbox;
-        console.log("Current tab:", currentTab);
-    };
-    const displayToday = () => {
-        //Todo
-        currentTab = tabs.today;
-        console.log("Current tab:", currentTab);
-    };
-    const displayWeekly = () => {
-        //Todo
-        currentTab = tabs.weekly;
+        currentTab = tabs.tab;
         console.log("Current tab:", currentTab);
     };
     const displayProject = (project) => {
@@ -104,13 +94,13 @@ const contentDisplay = (() => {
             document.getElementById('project-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
         }
     };
-    return{currentTab, displayInbox, displayToday, displayWeekly, displayProject, displayProjectAdd};
+    return{currentTab, displayTab, displayProject, displayProjectAdd};
 })();
 
 // event listeners for dashboard tabs
-document.getElementById('inbox-btn').addEventListener('click', contentDisplay.displayInbox);
-document.getElementById('today-btn').addEventListener('click', contentDisplay.displayToday);
-document.getElementById('week-btn').addEventListener('click', contentDisplay.displayWeekly);
+document.getElementById('inbox-btn').addEventListener('click', contentDisplay.displayTab(tabs.inbox));
+document.getElementById('today-btn').addEventListener('click', contentDisplay.displayTab(tabs.today));
+document.getElementById('week-btn').addEventListener('click', contentDisplay.displayTab(tabs.weekly));
 // event listener for adding a new project and a new todo
 document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(true)});
 document.getElementById('todo-add-btn').addEventListener('click', contentCreation.createTodo);
