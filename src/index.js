@@ -30,6 +30,14 @@ function createTodoObject(title, date, status){
     };
 }
 
+// Handles deletion of content on page and in storage
+const contentDeletion = (() => {
+    const deleteProject = (projectObject) => {
+        console.log("Deleting: ", projectObject);
+    };
+    return{deleteProject};
+})();
+
 // Handles creation of content and links to storage of content
 const contentCreation = (() => {
     const createProject = (projectName) => {
@@ -50,6 +58,7 @@ const contentCreation = (() => {
         const newProjectDel = document.createElement("button");
         newProjectDel.classList.add("button-main", "rounded-corners", "button-project-delete");
         newProjectDel.innerText = "X";
+        newProjectDel.addEventListener('click', function(){contentDeletion.deleteProject(projectObject)});
         newProjectDiv.appendChild(newProjectDel);
     };
     const createTodo = () => {
