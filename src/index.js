@@ -41,12 +41,14 @@ const contentCreation = (() => {
         document.getElementById('projects-container').insertBefore(newProjectDiv, document.getElementById('project-add-div'));
         //create project button
         const newProject = document.createElement("button");
-        newProject.classList.add("button-main", "button-dash", "rounded-corners");
+        newProject.classList.add("button-main", "rounded-corners", "button-project");
         newProject.innerText = projectName;
         newProject.addEventListener('click', function(){contentDisplay.displayTab(projectObject)});
         newProjectDiv.appendChild(newProject);
         //create project del button
         const newProjectDel = document.createElement("button");
+        newProjectDel.classList.add("button-main", "rounded-corners", "button-project-delete");
+        newProjectDel.innerText = "X";
         newProjectDiv.appendChild(newProjectDel);
     };
     const createTodo = () => {

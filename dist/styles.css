@@ -45,6 +45,12 @@
     font-size: 200%;
     border: none;
 }
+.button-project {
+    width: 70%;
+}
+.button-project-delete {
+    width: 20%;
+}
 
 .pad-left {
     padding-left: 15%;
