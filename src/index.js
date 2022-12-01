@@ -98,9 +98,9 @@ const contentDisplay = (() => {
 })();
 
 // event listeners for dashboard tabs
-document.getElementById('inbox-btn').addEventListener('click', contentDisplay.displayTab(tabs.inbox));
-document.getElementById('today-btn').addEventListener('click', contentDisplay.displayTab(tabs.today));
-document.getElementById('week-btn').addEventListener('click', contentDisplay.displayTab(tabs.weekly));
+document.getElementById('inbox-btn').addEventListener('click', function(){contentDisplay.displayTab(tabs.inbox)});
+document.getElementById('today-btn').addEventListener('click', function(){contentDisplay.displayTab(tabs.today)});
+document.getElementById('week-btn').addEventListener('click', function(){contentDisplay.displayTab(tabs.weekly)});
 // event listener for adding a new project and a new todo
 document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(true)});
 document.getElementById('todo-add-btn').addEventListener('click', contentCreation.createTodo);
