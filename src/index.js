@@ -41,7 +41,7 @@ const contentCreation = (() => {
         newProject.classList.add("button-main", "button-dash", "rounded-corners");
         newProject.innerText = projectName;
         document.getElementById('projects-container').insertBefore(newProject, document.getElementById('project-add-div'));
-        newProject.addEventListener('click', function(){contentDisplay.displayProject(projectObject)});
+        newProject.addEventListener('click', function(){contentDisplay.displayTab(projectObject)});
     };
     const createTodo = () => {
         //Todo
@@ -57,8 +57,7 @@ const contentDisplay = (() => {
     let currentTab = tabs.inbox;
     const displayTab = (tab) => {
         //Todo
-        currentTab = tabs.tab;
-        console.log("Current tab:", currentTab);
+        console.log("Current tab:", tab);
     };
     const displayProject = (project) => {
         //Todo
