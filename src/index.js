@@ -36,6 +36,8 @@ const contentDeletion = (() => {
     const deleteProject = (projectObject) => {
         let projectIndex = tabs.projects.indexOf(projectObject);
         console.log(projectIndex);
+        tabs.projects.splice(projectIndex, 1);
+        console.log(tabs.projects);
         projectObject.projectElement.remove();
     };
     return{deleteProject};
