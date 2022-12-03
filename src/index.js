@@ -16,8 +16,9 @@ const todoTemplate = `
     `;
 
 // Creates project objects
-function createProjectObject(name){
+function createProjectObject(name, elem){
     return{
+        projectElement: elem,
         projectName: name,
         projectTodos: []
     };
@@ -33,10 +34,9 @@ function createTodoObject(title, date, status){
 // Handles deletion of content on page and in storage
 const contentDeletion = (() => {
     const deleteProject = (projectObject) => {
-        console.log("Deleting: ", projectObject);
         let projectIndex = tabs.projects.indexOf(projectObject);
         console.log(projectIndex);
-        projectObject.remove();
+        projectObject.projectElement.remove();
     };
     return{deleteProject};
 })();
@@ -44,9 +44,6 @@ const contentDeletion = (() => {
 // Handles creation of content and links to storage of content
 const contentCreation = (() => {
     const createProject = (projectName) => {
-        //create js project
-        const projectObject = createProjectObject(projectName);
-        tabs.projects.push(projectObject);
         //create HTML project
         const newProjectDiv = document.createElement("div");
         document.getElementById('projects-container').insertBefore(newProjectDiv, document.getElementById('project-add-div'));
@@ -63,6 +60,9 @@ const contentCreation = (() => {
         newProjectDel.innerText = "X";
         newProjectDel.addEventListener('click', function(){contentDeletion.deleteProject(projectObject)});
         newProjectDiv.appendChild(newProjectDel);
+        //create js project
+        const projectObject = createProjectObject(projectName, newProjectDiv);
+        tabs.projects.push(projectObject);
     };
     const createTodo = () => {
         //Todo
