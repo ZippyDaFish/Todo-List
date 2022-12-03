@@ -8,10 +8,10 @@ let tabs = {
 
 const todoTemplate = `
     <div class="todo-container flex-container rounded-corners">
-    <input type="checkbox">
-    <p class="text-mid">Title</p>
-    <p class="text-mid">Description...</p>
-    <p class="text-mid">Date</p>
+        <input type="checkbox">
+        <p class="text-mid">Title</p>
+        <p class="text-mid">Description...</p>
+        <p class="text-mid">Date</p>
     </div>
     `;
 
@@ -34,6 +34,9 @@ function createTodoObject(title, date, status){
 const contentDeletion = (() => {
     const deleteProject = (projectObject) => {
         console.log("Deleting: ", projectObject);
+        let projectIndex = tabs.projects.indexOf(projectObject);
+        console.log(projectIndex);
+        projectObject.remove();
     };
     return{deleteProject};
 })();
