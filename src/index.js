@@ -66,6 +66,7 @@ const contentCreation = (() => {
         //create js todo
         const todoObject = createTodoObject("New Todo", "4/2/20", false, newTodoDiv);
         currentTab.push(todoObject);
+        console.log(tabs);
     };
     return{createProject, createTodo};
 })();
