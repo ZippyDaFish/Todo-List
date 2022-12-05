@@ -80,7 +80,11 @@ const contentCreation = (() => {
 const contentDisplay = (() => {
     const displayTab = (tab) => {
         //Todo
-        console.log("Current tab:", tab);
+        currentTab = tab;
+        console.log(currentTab);
+        if(currentTab == tabs.today || currentTab == tabs.weekly){
+            console.log("Todo add button not displayed");
+        }
     };
     const displayProject = (project) => {
         //Todo
