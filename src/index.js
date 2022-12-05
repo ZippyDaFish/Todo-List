@@ -1,10 +1,11 @@
-let todos = [];
 let tabs = {
     inbox: [],
     today: [],
     weekly: [],
     projects: []
 };
+
+let currentTab = "";
 
 const todoTemplate = `
     <div class="todo-container flex-container rounded-corners">
@@ -77,7 +78,6 @@ const contentCreation = (() => {
 
 // Handles displaying content onto the webpage
 const contentDisplay = (() => {
-    let currentTab = tabs.inbox;
     const displayTab = (tab) => {
         //Todo
         console.log("Current tab:", tab);
