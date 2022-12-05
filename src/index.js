@@ -7,15 +7,6 @@ let tabs = {
 
 let currentTab = "";
 
-const todoTemplate = `
-    <div class="todo-container flex-container rounded-corners">
-        <input type="checkbox">
-        <p class="text-mid">Title</p>
-        <p class="text-mid">Description...</p>
-        <p class="text-mid">Date</p>
-    </div>
-    `;
-
 // Creates project objects
 function createProjectObject(name, elem){
     return{
@@ -24,8 +15,9 @@ function createProjectObject(name, elem){
         projectTodos: []
     };
 }
-function createTodoObject(title, date, status){
+function createTodoObject(title, date, status, elem){
     return{
+        todoElement: elem,
         title: title,
         date: date,
         status: status
@@ -55,7 +47,7 @@ const contentCreation = (() => {
         const newProject = document.createElement("button");
         newProject.classList.add("button-main", "rounded-corners", "button-project");
         newProject.innerText = projectName;
-        newProject.addEventListener('click', function(){contentDisplay.displayTab(projectObject)});
+        newProject.addEventListener('click', function(){contentDisplay.displayProject(projectObject)});
         newProjectDiv.appendChild(newProject);
         //create project del button
         const newProjectDel = document.createElement("button");
@@ -68,10 +60,12 @@ const contentCreation = (() => {
         tabs.projects.push(projectObject);
     };
     const createTodo = () => {
-        //Todo
-        //Todo creation can be linked to whatever tab user is currently on
-        //Add todo button will not be displayed within Today and This Week tabs
-        console.log("New Todo");
+        //create HTML todo
+        const newTodoDiv = document.createElement("div");
+        document.getElementById("todo-container").appendChild(newTodoDiv);
+        //create js todo
+        const todoObject = createTodoObject("New Todo", "4/2/20", false, newTodoDiv);
+        currentTab.push(todoObject);
     };
     return{createProject, createTodo};
 })();
@@ -87,9 +81,8 @@ const contentDisplay = (() => {
         }
     };
     const displayProject = (project) => {
-        //Todo
         //Navs to given project and displays all Todos within
-        currentTab = tabs.projects;
+        currentTab = tabs.projects[tabs.projects.indexOf(project)].projectTodos;
         console.log("Current tab:", currentTab);
     };
     const displayProjectAdd = (add) => {
