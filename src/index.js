@@ -5,7 +5,7 @@ let tabs = {
     projects: []
 };
 
-let currentTab = "";
+let currentTab = tabs.inbox;
 
 // Creates project objects
 function createProjectObject(name, elem){
@@ -62,9 +62,10 @@ const contentCreation = (() => {
     const createTodo = () => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
-        document.getElementById("todo-container").appendChild(newTodoDiv);
+        document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-tbn"));
+        const title = "New Todo";
         //create js todo
-        const todoObject = createTodoObject("New Todo", "4/2/20", false, newTodoDiv);
+        const todoObject = createTodoObject(title, "4/2/20", false, newTodoDiv);
         currentTab.push(todoObject);
         console.log(tabs);
     };
@@ -79,12 +80,22 @@ const contentDisplay = (() => {
         console.log(currentTab);
         if(currentTab == tabs.today || currentTab == tabs.weekly){
             console.log("Todo add button not displayed");
+            return;
         }
+        currentTab.forEach(todo => {
+            displayTodo(todo);
+        });
     };
     const displayProject = (project) => {
         //Navs to given project and displays all Todos within
         currentTab = tabs.projects[tabs.projects.indexOf(project)].projectTodos;
         console.log("Current tab:", currentTab);
+        currentTab.forEach(todo => {
+            displayTodo(todo);
+        });
+    };
+    const displayTodo = (todo) => {
+        console.log("Displaying:", todo);
     };
     const displayProjectAdd = (add) => {
         addDiv = document.getElementById('project-add-div');
