@@ -27,6 +27,7 @@ function createTodoObject(title, date, status, elem){
 // Handles deletion of content on page and in storage
 const contentDeletion = (() => {
     const deleteProject = (projectObject) => {
+        currentTab = tabs.inbox;
         let projectIndex = tabs.projects.indexOf(projectObject);
         console.log(projectIndex);
         tabs.projects.splice(projectIndex, 1);
@@ -66,9 +67,12 @@ const contentCreation = (() => {
         const status = false;
         const title = "New Todo"; 
         const date = "4/2/20";
-        const statusElement = document.createElement("input").type = "checkbox";
-        const titleElement = document.createElement("p").innerText = title;
-        const dateElement = document.createElement("p").innerText = date;
+        const statusElement = document.createElement("input");
+        statusElement.type = "checkbox";
+        const titleElement = document.createElement("p");
+        titleElement.innerText = title;
+        const dateElement = document.createElement("p");
+        dateElement.innerText = date;
         newTodoDiv.appendChild(statusElement);
         newTodoDiv.appendChild(titleElement);
         newTodoDiv.appendChild(dateElement);
