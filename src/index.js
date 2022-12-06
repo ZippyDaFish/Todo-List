@@ -63,9 +63,17 @@ const contentCreation = (() => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
         document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-tbn"));
-        const title = "New Todo";
+        const status = false;
+        const title = "New Todo"; 
+        const date = "4/2/20";
+        const statusElement = document.createElement("input").type = "checkbox";
+        const titleElement = document.createElement("p").innerText = title;
+        const dateElement = document.createElement("p").innerText = date;
+        newTodoDiv.appendChild(statusElement);
+        newTodoDiv.appendChild(titleElement);
+        newTodoDiv.appendChild(dateElement);
         //create js todo
-        const todoObject = createTodoObject(title, "4/2/20", false, newTodoDiv);
+        const todoObject = createTodoObject(title, date, status, newTodoDiv);
         currentTab.push(todoObject);
         console.log(tabs);
     };
@@ -75,7 +83,6 @@ const contentCreation = (() => {
 // Handles displaying content onto the webpage
 const contentDisplay = (() => {
     const displayTab = (tab) => {
-        //Todo
         currentTab = tab;
         console.log(currentTab);
         if(currentTab == tabs.today || currentTab == tabs.weekly){
@@ -96,6 +103,7 @@ const contentDisplay = (() => {
     };
     const displayTodo = (todo) => {
         console.log("Displaying:", todo);
+        document.getElementById("todo-container").insertBefore(todo.todoElement, document.getElementById("todo-add-btn"));
     };
     const displayProjectAdd = (add) => {
         addDiv = document.getElementById('project-add-div');
