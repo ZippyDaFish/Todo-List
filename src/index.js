@@ -15,6 +15,7 @@ function createProjectObject(name, elem){
         projectTodos: []
     };
 }
+// Creates todo objects
 function createTodoObject(title, date, status, elem){
     return{
         todoElement: elem,
@@ -29,9 +30,9 @@ const contentDeletion = (() => {
     const deleteProject = (projectObject) => {
         currentTab = tabs.inbox;
         let projectIndex = tabs.projects.indexOf(projectObject);
-        console.log(projectIndex);
+        // del project in storage
         tabs.projects.splice(projectIndex, 1);
-        console.log(tabs.projects);
+        // del project in HTML
         projectObject.projectElement.remove();
     };
     return{deleteProject};
@@ -63,21 +64,24 @@ const contentCreation = (() => {
     const createTodo = () => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
-        document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-tbn"));
-        const status = false;
+        document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-btn"));
+        // PLACEHOLDER INFO
         const title = "New Todo"; 
         const date = "4/2/20";
+
+        //create element of todo and set content to user input
         const statusElement = document.createElement("input");
         statusElement.type = "checkbox";
         const titleElement = document.createElement("p");
         titleElement.innerText = title;
         const dateElement = document.createElement("p");
         dateElement.innerText = date;
+        //append elements to the new div
         newTodoDiv.appendChild(statusElement);
         newTodoDiv.appendChild(titleElement);
         newTodoDiv.appendChild(dateElement);
         //create js todo
-        const todoObject = createTodoObject(title, date, status, newTodoDiv);
+        const todoObject = createTodoObject(title, date, false, newTodoDiv);
         currentTab.push(todoObject);
         console.log(tabs);
     };
