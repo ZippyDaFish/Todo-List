@@ -27,7 +27,7 @@ function createTodoObject(title, date, status, elem){
 // Handles deletion of content on page and in storage
 const contentDeletion = (() => {
     const deleteProject = (projectObject) => {
-        currentTab = tabs.inbox;
+        contentDisplay.displayTab(tabs.inbox);
         let projectIndex = tabs.projects.indexOf(projectObject);
         // del project in storage
         tabs.projects.splice(projectIndex, 1);
