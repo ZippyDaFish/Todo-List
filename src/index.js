@@ -83,7 +83,6 @@ const contentCreation = (() => {
         //create js todo
         const todoObject = createTodoObject(title, date, false, newTodoDiv);
         currentTab.push(todoObject);
-        console.log(tabs);
     };
     return{createProject, createTodo};
 })();
@@ -92,7 +91,6 @@ const contentCreation = (() => {
 const contentDisplay = (() => {
     const displayTab = (tab) => {
         currentTab = tab;
-        console.log(currentTab);
         if(currentTab == tabs.today || currentTab == tabs.weekly){
             console.log("Todo add button not displayed");
             return;
@@ -104,13 +102,11 @@ const contentDisplay = (() => {
     const displayProject = (project) => {
         //Navs to given project and displays all Todos within
         currentTab = tabs.projects[tabs.projects.indexOf(project)].projectTodos;
-        console.log("Current tab:", currentTab);
         currentTab.forEach(todo => {
             displayTodo(todo);
         });
     };
     const displayTodo = (todo) => {
-        console.log("Displaying:", todo);
         document.getElementById("todo-container").insertBefore(todo.todoElement, document.getElementById("todo-add-btn"));
     };
     const displayProjectAdd = (add) => {
