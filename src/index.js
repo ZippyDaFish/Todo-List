@@ -4,8 +4,7 @@ let tabs = {
     weekly: [],
     projects: []
 };
-
-let currentTab = tabs.inbox;
+let currentTab;
 
 // Creates project objects
 function createProjectObject(name, elem){
@@ -90,6 +89,19 @@ const contentCreation = (() => {
 // Handles displaying content onto the webpage
 const contentDisplay = (() => {
     const displayTab = (tab) => {
+        // clear tab
+        todoContainer = document.getElementById("todo-container");
+        todoContainer.innerHTML = "";
+
+        // create and append todo add button to todo container
+        todoAddBtn = document.createElement("button");
+        todoAddBtn.setAttribute('id','todo-add-btn');
+        todoAddBtn.classList.add('button-main', 'button-dash', 'rounded-corners');
+        todoAddBtn.innerText = "+ Add";
+        todoAddBtn.addEventListener('click', contentCreation.createTodo);
+        todoContainer.appendChild(todoAddBtn);
+
+
         currentTab = tab;
         if(currentTab == tabs.today || currentTab == tabs.weekly){
             console.log("Todo add button not displayed");
@@ -144,6 +156,8 @@ const contentDisplay = (() => {
 document.getElementById('inbox-btn').addEventListener('click', function(){contentDisplay.displayTab(tabs.inbox)});
 document.getElementById('today-btn').addEventListener('click', function(){contentDisplay.displayTab(tabs.today)});
 document.getElementById('week-btn').addEventListener('click', function(){contentDisplay.displayTab(tabs.weekly)});
-// event listener for adding a new project and a new todo
+// event listener for adding a new project
 document.getElementById('project-add-btn').addEventListener('click', function(){contentDisplay.displayProjectAdd(true)});
-document.getElementById('todo-add-btn').addEventListener('click', contentCreation.createTodo);
+
+// display inbox tab on load
+contentDisplay.displayTab(tabs.inbox);
