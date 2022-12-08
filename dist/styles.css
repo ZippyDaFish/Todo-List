@@ -116,9 +116,18 @@
     font-size: 200%;
     background-color: var(--color-dark);
     float: right;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     height: 8vh;
     padding: 2vh;
     margin-left: 4vw;
     margin-top: 2vh;
+}
+
+.todo-checkbox {
+    width: 25px;
+    height: 25px;
+}
+.todo-checkbox:checked {
+    background-color: black;
 }

@@ -72,6 +72,7 @@ const contentCreation = (() => {
         //create element of todo and set content to user input
         const statusElement = document.createElement("input");
         statusElement.type = "checkbox";
+        statusElement.classList.add('todo-checkbox');
         const titleElement = document.createElement("p");
         titleElement.innerText = title;
         const dateElement = document.createElement("p");
