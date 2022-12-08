@@ -64,6 +64,7 @@ const contentCreation = (() => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
         document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-btn"));
+        newTodoDiv.classList.add("todo-container", "flex-container");
         // PLACEHOLDER INFO
         const title = "New Todo"; 
         const date = "4/2/20";
@@ -79,6 +80,7 @@ const contentCreation = (() => {
         newTodoDiv.appendChild(statusElement);
         newTodoDiv.appendChild(titleElement);
         newTodoDiv.appendChild(dateElement);
+
         //create js todo
         const todoObject = createTodoObject(title, date, false, newTodoDiv);
         currentTab.push(todoObject);
@@ -105,7 +107,7 @@ const contentDisplay = (() => {
         // create and append todo add button to todo container
         todoAddBtn = document.createElement("button");
         todoAddBtn.setAttribute('id','todo-add-btn');
-        todoAddBtn.classList.add('button-main', 'button-dash', 'rounded-corners');
+        todoAddBtn.classList.add('todo-container', 'button-todo');
         todoAddBtn.innerText = "+ Add";
         todoAddBtn.addEventListener('click', contentCreation.createTodo);
         todoContainer.appendChild(todoAddBtn);

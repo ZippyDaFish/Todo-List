@@ -113,9 +113,9 @@
 }
 .todo-container {
     background-color: var(--color-dark);
-    width: 80%;
+    float: right;
     justify-content: space-between;
-    margin-top: 4vh;
-    margin-left: 2vw;
     padding: 2vh;
+    margin-left: 2vw;
+    margin-top: 2vh;
 }
