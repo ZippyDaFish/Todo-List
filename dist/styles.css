@@ -42,7 +42,6 @@
 }
 
 .button-todo {
-    font-size: 200%;
     border: none;
 }
 
@@ -112,10 +111,14 @@
     flex-direction: column;
 }
 .todo-container {
+    border-top-left-radius: 30px 50%;
+    border-bottom-left-radius: 30px 50%;
+    font-size: 200%;
     background-color: var(--color-dark);
     float: right;
-    justify-content: space-between;
+    justify-content: space-around;
+    height: 8vh;
     padding: 2vh;
-    margin-left: 2vw;
+    margin-left: 4vw;
     margin-top: 2vh;
 }
