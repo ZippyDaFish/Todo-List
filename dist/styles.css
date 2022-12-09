@@ -109,6 +109,7 @@
     grid-column: 2 / 7;
     background-color: var(--color-light);
     flex-direction: column;
+    padding-top: 6vh;
 }
 .todo-container {
     border-top-left-radius: 30px 50%;
@@ -127,7 +128,4 @@
 .todo-checkbox {
     width: 25px;
     height: 25px;
-}
-.todo-checkbox:checked {
-    background-color: black;
 }
