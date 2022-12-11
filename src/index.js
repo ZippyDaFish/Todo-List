@@ -64,7 +64,7 @@ const contentCreation = (() => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
         document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-btn"));
-        newTodoDiv.classList.add("todo-container", "flex-container");
+        newTodoDiv.classList.add("todo-container", "flex-container", 'rounded-corners');
         // PLACEHOLDER INFO
         const title = "New Todo"; 
         const date = "4/2/20";
@@ -72,7 +72,7 @@ const contentCreation = (() => {
         //create element of todo and set content to user input
         const statusElement = document.createElement("input");
         statusElement.type = "checkbox";
-        statusElement.classList.add('todo-checkbox', 'rounded-corners');
+        statusElement.classList.add('todo-checkbox');
         const titleElement = document.createElement("p");
         titleElement.innerText = title;
         const dateElement = document.createElement("p");
@@ -108,7 +108,7 @@ const contentDisplay = (() => {
         // create and append todo add button to todo container
         todoAddBtn = document.createElement("button");
         todoAddBtn.setAttribute('id','todo-add-btn');
-        todoAddBtn.classList.add('todo-container', 'button-todo');
+        todoAddBtn.classList.add('todo-container', 'button-todo', 'rounded-corners');
         todoAddBtn.innerText = "+ Add";
         todoAddBtn.addEventListener('click', contentCreation.createTodo);
         todoContainer.appendChild(todoAddBtn);
