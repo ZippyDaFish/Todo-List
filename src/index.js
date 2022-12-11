@@ -107,6 +107,7 @@ const contentDisplay = (() => {
 
         todoAddDiv = document.createElement("div");
         todoAddDiv.setAttribute('id', 'todo-add-div');
+        todoAddDiv.classList.add('flex-container', 'rounded-corners');
         todoContainer.appendChild(todoAddDiv);
         displayTodoAdd(false, todoAddDiv);
     };
@@ -114,9 +115,9 @@ const contentDisplay = (() => {
         parent.appendChild(todo.todoElement);
     };
     const displayTodoAdd = (add) => {
-        addDiv = docu.getElementById("todo-add-div");
+        addDiv = document.getElementById("todo-add-div");
         addButton = `
-        <button id="todo-add-btn" class="todo-container button-todo rounded-corners">+ Add</button>`;
+        <button id="todo-add-btn" class="button-todo rounded-corners">+ Add</button>`;
         confirmationTemplate = `
         <input type="text" id="todo-add-input">
         <div>
@@ -125,12 +126,10 @@ const contentDisplay = (() => {
         </div>`;
         if(!add){
             addDiv.innerHTML = addButton;
-            document.getElementById('todo-add-btn').addEventListener('click', function(){contentDisplay.displayTodoAdd(false)});
-            console.log("Todo add button shown successfully");
+            document.getElementById('todo-add-btn').addEventListener('click', function(){contentDisplay.displayTodoAdd(true)});
         }
         else if(add){
             addDiv.innerHTML = confirmationTemplate;
-            console.log("Template saved");
             document.getElementById('todo-add-btn-confirm').addEventListener('click', function(){
                 todoTitle = document.getElementById('todo-add-input').value;
                 if(todoTitle == ""){
@@ -138,10 +137,9 @@ const contentDisplay = (() => {
                     return;
                 }
                 contentCreation.createTodo(todoTitle);
+                contentDisplay.displayTodoAdd(false);
             });
-            console.log("Confirmation shown");
             document.getElementById('todo-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayTodoAdd(false)});
-            console.log("Todo confirmation shown successfully");
         }
     };
     const displayProjectAdd = (add) => {

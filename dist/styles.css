@@ -43,6 +43,8 @@
 
 .button-todo {
     border: none;
+    background-color: var(--color-dark);
+    font-size: 200%;
 }
 .button-todo:hover {
     background-color: var(--color-main);
@@ -114,6 +116,13 @@
     background-color: var(--color-light);
     flex-direction: column;
     padding-top: 6vh;
+}
+#todo-add-div {
+    background-color: var(--color-dark);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1vh;
+    margin: 2vh 4vw 0 4vw;
 }
 .todo-container {
     font-size: 200%;
