@@ -116,17 +116,13 @@
     padding-top: 6vh;
 }
 .todo-container {
-    border-top-left-radius: 30px 50%;
-    border-bottom-left-radius: 30px 50%;
     font-size: 200%;
     background-color: var(--color-dark);
-    float: right;
     justify-content: space-between;
     align-items: center;
     height: 8vh;
-    padding: 2vh;
-    margin-left: 4vw;
-    margin-top: 2vh;
+    padding: 3vh;
+    margin: 2vh 4vw 0 4vw;
 }
 
 .todo-checkbox {
