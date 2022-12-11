@@ -60,13 +60,13 @@ const contentCreation = (() => {
         const projectObject = createProjectObject(projectName, newProjectDiv);
         tabs.projects.push(projectObject);
     };
-    const createTodo = () => {
+    const createTodo = (todoTitle) => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
         document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-btn"));
         newTodoDiv.classList.add("todo-container", "flex-container", 'rounded-corners');
         // PLACEHOLDER INFO
-        const title = "New Todo"; 
+        const title = todoTitle; 
         const date = "4/2/20";
 
         //create element of todo and set content to user input
@@ -105,16 +105,44 @@ const contentDisplay = (() => {
             displayTodo(todo, todoContainer);
         });
 
-        // create and append todo add button to todo container
-        todoAddBtn = document.createElement("button");
-        todoAddBtn.setAttribute('id','todo-add-btn');
-        todoAddBtn.classList.add('todo-container', 'button-todo', 'rounded-corners');
-        todoAddBtn.innerText = "+ Add";
-        todoAddBtn.addEventListener('click', contentCreation.createTodo);
-        todoContainer.appendChild(todoAddBtn);
+        todoAddDiv = document.createElement("div");
+        todoAddDiv.setAttribute('id', 'todo-add-div');
+        todoContainer.appendChild(todoAddDiv);
+        displayTodoAdd(false, todoAddDiv);
     };
     const displayTodo = (todo, parent) => {
         parent.appendChild(todo.todoElement);
+    };
+    const displayTodoAdd = (add) => {
+        addDiv = docu.getElementById("todo-add-div");
+        addButton = `
+        <button id="todo-add-btn" class="todo-container button-todo rounded-corners">+ Add</button>`;
+        confirmationTemplate = `
+        <input type="text" id="todo-add-input">
+        <div>
+            <button id="todo-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
+            <button id="todo-add-btn-cancel" class="button-main button-dash-secondary rounded-corners">Cancel</button>
+        </div>`;
+        if(!add){
+            addDiv.innerHTML = addButton;
+            document.getElementById('todo-add-btn').addEventListener('click', function(){contentDisplay.displayTodoAdd(false)});
+            console.log("Todo add button shown successfully");
+        }
+        else if(add){
+            addDiv.innerHTML = confirmationTemplate;
+            console.log("Template saved");
+            document.getElementById('todo-add-btn-confirm').addEventListener('click', function(){
+                todoTitle = document.getElementById('todo-add-input').value;
+                if(todoTitle == ""){
+                    alert("Todo Title Cannot be Empty");
+                    return;
+                }
+                contentCreation.createTodo(todoTitle);
+            });
+            console.log("Confirmation shown");
+            document.getElementById('todo-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayTodoAdd(false)});
+            console.log("Todo confirmation shown successfully");
+        }
     };
     const displayProjectAdd = (add) => {
         addDiv = document.getElementById('project-add-div');
@@ -144,7 +172,7 @@ const contentDisplay = (() => {
             document.getElementById('project-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayProjectAdd(false)});
         }
     };
-    return{displayTab, displayProjectAdd};
+    return{displayTab, displayProjectAdd, displayTodoAdd};
 })();
 
 // event listeners for dashboard tabs
