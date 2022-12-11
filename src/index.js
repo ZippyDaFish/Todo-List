@@ -63,7 +63,7 @@ const contentCreation = (() => {
     const createTodo = (todoTitle) => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
-        document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-btn"));
+        document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-div"));
         newTodoDiv.classList.add("todo-container", "flex-container", 'rounded-corners');
         // PLACEHOLDER INFO
         const title = todoTitle; 
