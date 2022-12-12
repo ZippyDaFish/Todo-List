@@ -67,7 +67,7 @@ const contentCreation = (() => {
         newTodoDiv.classList.add("todo-container", "flex-container", 'rounded-corners');
         // PLACEHOLDER INFO
         const title = todoTitle; 
-        const date = "4/2/20";
+        const date = "No Date";
 
         //create element of todo and set content to user input
         const statusElement = document.createElement("input");
