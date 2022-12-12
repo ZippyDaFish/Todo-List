@@ -34,7 +34,12 @@ const contentDeletion = (() => {
         // del project in HTML
         projectObject.projectElement.remove();
     };
-    return{deleteProject};
+    const deleteTodo = (todoObject) => {
+        let todoIndex = currentTab.indexOf(todoObject);
+        currentTab.splice(todoIndex, 1);
+        todoObject.todoElement.remove();
+    };
+    return{deleteProject, deleteTodo};
 })();
 
 // Handles creation of content and links to storage of content
@@ -77,10 +82,16 @@ const contentCreation = (() => {
         titleElement.innerText = title;
         const dateElement = document.createElement("p");
         dateElement.innerText = date;
+        //create delete element
+        const delElement = document.createElement("button");
+        delElement.innerText = "X";
+        delElement.classList.add("button-todo-delete", "rounded-corners");
+        delElement.addEventListener('click', function(){contentDeletion.deleteTodo(todoObject)});
         //append elements to the new div
         newTodoDiv.appendChild(statusElement);
         newTodoDiv.appendChild(titleElement);
         newTodoDiv.appendChild(dateElement);
+        newTodoDiv.appendChild(delElement);
 
         //create js todo
         const todoObject = createTodoObject(title, date, false, newTodoDiv);

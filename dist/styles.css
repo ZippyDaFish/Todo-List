@@ -59,7 +59,7 @@
 .button-project-delete {
     width: 20%;
 }
-.button-project-delete:hover {
+.button-project-delete:hover, .button-todo-delete:hover {
     background-color: red;
     transition: 0.25s;
 }
@@ -143,6 +143,12 @@
     height: 8vh;
     padding: 2vh;
     margin: 2vh 4vw 0 4vw;
+}
+.button-todo-delete {
+    width: 40px;
+    height: 30px;
+    border: none;
+    font-size: 90%;
 }
 
 .todo-checkbox {
