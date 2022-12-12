@@ -119,8 +119,8 @@ const contentDisplay = (() => {
         addButton = `
         <button id="todo-add-btn" class="button-todo rounded-corners">+ Add</button>`;
         confirmationTemplate = `
-        <input type="text" id="todo-add-input">
-        <div>
+        <div class="flex-container todo-add-input-wrapper pad-left">
+            <input type="text" id="todo-add-input">
             <button id="todo-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
             <button id="todo-add-btn-cancel" class="button-main button-dash-secondary rounded-corners">Cancel</button>
         </div>`;
