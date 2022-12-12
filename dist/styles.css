@@ -112,12 +112,17 @@
     font-size: 150%;
 }
 
+.projects {
+    overflow-y: scroll;
+}
+
 .content {
     grid-row: 2 / 7;
     grid-column: 2 / 7;
     background-color: var(--color-light);
     flex-direction: column;
     padding-top: 6vh;
+    overflow-y: scroll;
 }
 #todo-add-div {
     background-color: var(--color-dark);
