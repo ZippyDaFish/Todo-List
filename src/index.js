@@ -106,7 +106,7 @@ const contentCreation = (() => {
 const contentDisplay = (() => {
     const displayTab = (tab) => {
         // clear tab
-        todoContainer = document.getElementById("todo-container");
+        let todoContainer = document.getElementById("todo-container");
         todoContainer.innerHTML = "";
 
         currentTab = tab;
@@ -118,7 +118,7 @@ const contentDisplay = (() => {
             displayTodo(todo, todoContainer);
         });
 
-        todoAddDiv = document.createElement("div");
+        let todoAddDiv = document.createElement("div");
         todoAddDiv.setAttribute('id', 'todo-add-div');
         todoAddDiv.classList.add('flex-container', 'rounded-corners');
         todoContainer.appendChild(todoAddDiv);
@@ -128,10 +128,10 @@ const contentDisplay = (() => {
         parent.appendChild(todo.todoElement);
     };
     const displayTodoAdd = (add) => {
-        addDiv = document.getElementById("todo-add-div");
-        addButton = `
+        let addDiv = document.getElementById("todo-add-div");
+        const addButton = `
         <button id="todo-add-btn" class="button-todo rounded-corners">+ Add</button>`;
-        confirmationTemplate = `
+        const confirmationTemplate = `
         <div class="flex-container todo-add-input-wrapper pad-left">
             <input type="text" id="todo-add-input">
             <button id="todo-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
@@ -144,7 +144,7 @@ const contentDisplay = (() => {
         else if(add){
             addDiv.innerHTML = confirmationTemplate;
             document.getElementById('todo-add-btn-confirm').addEventListener('click', function(){
-                todoTitle = document.getElementById('todo-add-input').value;
+                let todoTitle = document.getElementById('todo-add-input').value;
                 if(todoTitle == ""){
                     alert("Todo Title Cannot be Empty");
                     return;
@@ -156,10 +156,10 @@ const contentDisplay = (() => {
         }
     };
     const displayProjectAdd = (add) => {
-        addDiv = document.getElementById('project-add-div');
-        addButton = `
+        let addDiv = document.getElementById('project-add-div');
+        const addButton = `
         <button id="project-add-btn" class="button-main button-dash rounded-corners">+ Add</button>`
-        confirmationTemplate = `
+        const confirmationTemplate = `
         <input type="text" id="project-add-input">
         <div>
             <button id="project-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
@@ -172,7 +172,7 @@ const contentDisplay = (() => {
         else if(add){
             addDiv.innerHTML = confirmationTemplate;
             document.getElementById('project-add-btn-confirm').addEventListener('click', function(){
-                projectName = document.getElementById('project-add-input').value;
+                let projectName = document.getElementById('project-add-input').value;
                 if(projectName == ""){
                     alert("Project Name Cannot be Empty");
                     return;
@@ -195,3 +195,6 @@ document.getElementById('project-add-btn').addEventListener('click', function(){
 
 // display inbox tab on load
 contentDisplay.displayTab(tabs.inbox);
+
+const newDate = Date('2022-06-12');
+console.log(newDate);
