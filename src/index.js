@@ -1,4 +1,5 @@
 import 'date-fns'
+import { format, parse, parseISO } from 'date-fns';
 
 let tabs = {
     inbox: [],
@@ -67,14 +68,14 @@ const contentCreation = (() => {
         const projectObject = createProjectObject(projectName, newProjectDiv);
         tabs.projects.push(projectObject);
     };
-    const createTodo = (todoTitle) => {
+    const createTodo = (todoTitle, newDate) => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
         document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-div"));
         newTodoDiv.classList.add("todo-container", "flex-container", 'rounded-corners');
         // PLACEHOLDER INFO
         const title = todoTitle; 
-        const date = "No Date";
+        let dueDate = format(newDate, 'MM-dd-yyyy');
 
         //create element of todo and set content to user input
         const statusElement = document.createElement("input");
@@ -83,7 +84,7 @@ const contentCreation = (() => {
         const titleElement = document.createElement("p");
         titleElement.innerText = title;
         const dateElement = document.createElement("p");
-        dateElement.innerText = date;
+        dateElement.innerText = dueDate;
         //create delete element
         const delElement = document.createElement("button");
         delElement.innerText = "X";
@@ -96,7 +97,7 @@ const contentCreation = (() => {
         newTodoDiv.appendChild(delElement);
 
         //create js todo
-        const todoObject = createTodoObject(title, date, false, newTodoDiv);
+        const todoObject = createTodoObject(title, dueDate, false, newTodoDiv);
         currentTab.push(todoObject);
     };
     return{createProject, createTodo};
@@ -145,11 +146,12 @@ const contentDisplay = (() => {
             addDiv.innerHTML = confirmationTemplate;
             document.getElementById('todo-add-btn-confirm').addEventListener('click', function(){
                 let todoTitle = document.getElementById('todo-add-input').value;
+                let dueDate = new Date('2022-06-12');
                 if(todoTitle == ""){
                     alert("Todo Title Cannot be Empty");
                     return;
                 }
-                contentCreation.createTodo(todoTitle);
+                contentCreation.createTodo(todoTitle, dueDate);
                 contentDisplay.displayTodoAdd(false);
             });
             document.getElementById('todo-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayTodoAdd(false)});
@@ -195,6 +197,3 @@ document.getElementById('project-add-btn').addEventListener('click', function(){
 
 // display inbox tab on load
 contentDisplay.displayTab(tabs.inbox);
-
-const newDate = Date('2022-06-12');
-console.log(newDate);
