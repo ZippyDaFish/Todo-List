@@ -1,5 +1,4 @@
-import { parse, format } from 'date-fns';
-import { enGB } from 'date-fns/locale';
+import { parse, format, isToday, parseISO} from 'date-fns';
 
 let tabs = {
     inbox: [],
@@ -9,11 +8,27 @@ let tabs = {
 };
 let currentTab;
 
+function gatherTodosToday(){
+    let dailyTodos = [];
+    tabs.inbox.forEach(todo => {
+        if(isToday(new Date(todo.date))){
+            dailyTodos.push(todo);
+        }
+    });
+    return dailyTodos;
+}
+function gatherTodosWeekly(){
+    let weeklyTodos = [];
+    tabs.inbox.forEach(todo => {
+        // compare dates to this week
+    });
+}
+
 function isValidDate(month, day, year) {
     const parsed = parse(`${month}/${day}/${year}`, 'P', new Date());
     console.log(parsed);
     return parsed;
-  }
+}
 
 // Creates project objects
 function createProjectObject(name, elem){
@@ -118,7 +133,13 @@ const contentDisplay = (() => {
 
         currentTab = tab;
         if(currentTab == tabs.today || currentTab == tabs.weekly){
-            console.log("Todo add button not displayed");
+            let dailyTodos = gatherTodosToday();
+            dailyTodos.forEach(todo => {
+                displayTodo(todo, todoContainer);
+            });
+            return;
+        }
+        if(currentTab == tabs.weekly){
             return;
         }
         currentTab.forEach(todo => {
