@@ -1,4 +1,4 @@
-import { parse, isValid, format } from 'date-fns';
+import { parse, format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 
 let tabs = {
@@ -10,8 +10,7 @@ let tabs = {
 let currentTab;
 
 function isValidDate(month, day, year) {
-    console.log("Here");
-    const parsed = parse(`${month}/${day}/${year}`, 'P', new Date(), { locale: enGB });
+    const parsed = parse(`${month}/${day}/${year}`, 'P', new Date());
     console.log(parsed);
     return parsed;
   }
