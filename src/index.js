@@ -73,7 +73,7 @@ const contentCreation = (() => {
         const newTodoDiv = document.createElement("div");
         document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-div"));
         newTodoDiv.classList.add("todo-container", "flex-container", 'rounded-corners');
-        // PLACEHOLDER INFO
+
         const title = todoTitle; 
         let dueDate = format(newDate, 'MM-dd-yyyy');
 
@@ -134,7 +134,8 @@ const contentDisplay = (() => {
         <button id="todo-add-btn" class="button-todo rounded-corners">+ Add</button>`;
         const confirmationTemplate = `
         <div class="flex-container todo-add-input-wrapper pad-left">
-            <input type="text" id="todo-add-input">
+            <input type="text" id="todo-add-input" placeholder="Title">
+            <input type="text" id="date-add-input" placeholder="mm-dd-yyyy">
             <button id="todo-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
             <button id="todo-add-btn-cancel" class="button-main button-dash-secondary rounded-corners">Cancel</button>
         </div>`;
@@ -146,9 +147,13 @@ const contentDisplay = (() => {
             addDiv.innerHTML = confirmationTemplate;
             document.getElementById('todo-add-btn-confirm').addEventListener('click', function(){
                 let todoTitle = document.getElementById('todo-add-input').value;
-                let dueDate = new Date('2022-06-12');
+                let dueDate = new Date(document.getElementById('date-add-input').value);
                 if(todoTitle == ""){
                     alert("Todo Title Cannot be Empty");
+                    return;
+                }
+                if(dueDate == ""){
+                    alert("Please add a date");
                     return;
                 }
                 contentCreation.createTodo(todoTitle, dueDate);
