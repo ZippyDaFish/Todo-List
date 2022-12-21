@@ -1,4 +1,4 @@
-import { parse, format, isToday, parseISO} from 'date-fns';
+import { parse, format, isToday, parseISO, isThisWeek} from 'date-fns';
 
 let tabs = {
     inbox: [],
@@ -27,8 +27,19 @@ function gatherTodosToday(){
 function gatherTodosWeekly(){
     let weeklyTodos = [];
     tabs.inbox.forEach(todo => {
-        // compare dates to this week
+        if(isThisWeek(new Date(todo.date))){
+            weeklyTodos.push(todo);
+        }
     });
+    tabs.projects.forEach(project => {
+        project.projectTodos.forEach(todo => {
+            if(isThisWeek(new Date(todo.date))){
+                weeklyTodos.push(todo);
+            }
+        });
+    });
+    console.log(weeklyTodos);
+    return weeklyTodos;
 }
 
 function isValidDate(month, day, year) {
@@ -139,7 +150,7 @@ const contentDisplay = (() => {
         todoContainer.innerHTML = "";
 
         currentTab = tab;
-        if(currentTab == tabs.today || currentTab == tabs.weekly){
+        if(currentTab == tabs.today){
             let dailyTodos = gatherTodosToday();
             dailyTodos.forEach(todo => {
                 displayTodo(todo, todoContainer);
@@ -147,6 +158,10 @@ const contentDisplay = (() => {
             return;
         }
         if(currentTab == tabs.weekly){
+            let weeklyTodos = gatherTodosWeekly();
+            weeklyTodos.forEach(todo => {
+                displayTodo(todo, todoContainer);
+            });
             return;
         }
         currentTab.forEach(todo => {
