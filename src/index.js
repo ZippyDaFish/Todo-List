@@ -1,5 +1,5 @@
-import 'date-fns'
-import { format, parse, parseISO } from 'date-fns';
+import { parse, isValid, format } from 'date-fns';
+import { enGB } from 'date-fns/locale';
 
 let tabs = {
     inbox: [],
@@ -8,6 +8,12 @@ let tabs = {
     projects: []
 };
 let currentTab;
+
+function isValidDate(month, day, year) {
+    const parsed = parse(`${month}/${day}/${year}`, 'P', new Date(), { locale: enGB });
+    console.log(parsed);
+    return isValid(parsed);
+  }
 
 // Creates project objects
 function createProjectObject(name, elem){
@@ -135,7 +141,9 @@ const contentDisplay = (() => {
         const confirmationTemplate = `
         <div class="flex-container todo-add-input-wrapper pad-left">
             <input type="text" id="todo-add-input" placeholder="Title">
-            <input type="text" id="date-add-input" placeholder="mm-dd-yyyy">
+            <input type="text" id="date-add-input0" placeholder="mm">
+            <input type="text" id="date-add-input1" placeholder="dd">
+            <input type="text" id="date-add-input2" placeholder="yyyy">
             <button id="todo-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
             <button id="todo-add-btn-cancel" class="button-main button-dash-secondary rounded-corners">Cancel</button>
         </div>`;
@@ -147,13 +155,9 @@ const contentDisplay = (() => {
             addDiv.innerHTML = confirmationTemplate;
             document.getElementById('todo-add-btn-confirm').addEventListener('click', function(){
                 let todoTitle = document.getElementById('todo-add-input').value;
-                let dueDate = new Date(document.getElementById('date-add-input').value);
+                let dueDate = isValidDate(document.getElementById('date-add-input').value);
                 if(todoTitle == ""){
                     alert("Todo Title Cannot be Empty");
-                    return;
-                }
-                if(dueDate == ""){
-                    alert("Please add a date");
                     return;
                 }
                 contentCreation.createTodo(todoTitle, dueDate);
