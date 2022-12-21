@@ -15,6 +15,13 @@ function gatherTodosToday(){
             dailyTodos.push(todo);
         }
     });
+    tabs.projects.forEach(project => {
+        project.projectTodos.forEach(todo => {
+            if(isToday(new Date(todo.date))){
+                dailyTodos.push(todo);
+            }
+        });
+    });
     return dailyTodos;
 }
 function gatherTodosWeekly(){
