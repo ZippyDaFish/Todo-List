@@ -10,9 +10,10 @@ let tabs = {
 let currentTab;
 
 function isValidDate(month, day, year) {
+    console.log("Here");
     const parsed = parse(`${month}/${day}/${year}`, 'P', new Date(), { locale: enGB });
     console.log(parsed);
-    return isValid(parsed);
+    return parsed;
   }
 
 // Creates project objects
@@ -141,9 +142,11 @@ const contentDisplay = (() => {
         const confirmationTemplate = `
         <div class="flex-container todo-add-input-wrapper pad-left">
             <input type="text" id="todo-add-input" placeholder="Title">
-            <input type="text" id="date-add-input0" placeholder="mm">
-            <input type="text" id="date-add-input1" placeholder="dd">
-            <input type="text" id="date-add-input2" placeholder="yyyy">
+            <div>
+                <input type="text" id="date-add-input0" placeholder="mm">
+                <input type="text" id="date-add-input1" placeholder="dd">
+                <input type="text" id="date-add-input2" placeholder="yyyy">
+            </div>
             <button id="todo-add-btn-confirm" class="button-main button-dash-secondary rounded-corners">Confirm</button>
             <button id="todo-add-btn-cancel" class="button-main button-dash-secondary rounded-corners">Cancel</button>
         </div>`;
@@ -155,9 +158,20 @@ const contentDisplay = (() => {
             addDiv.innerHTML = confirmationTemplate;
             document.getElementById('todo-add-btn-confirm').addEventListener('click', function(){
                 let todoTitle = document.getElementById('todo-add-input').value;
-                let dueDate = isValidDate(document.getElementById('date-add-input').value);
+                let userDates = [
+                    document.getElementById('date-add-input0').value,
+                    document.getElementById('date-add-input1').value,
+                    document.getElementById('date-add-input2').value
+                ]
+                console.log(userDates);
+                let dueDate = isValidDate(userDates[0], userDates[1], userDates[2]);
+                console.log(dueDate);
                 if(todoTitle == ""){
                     alert("Todo Title Cannot be Empty");
+                    return;
+                }
+                if(dueDate == "Invalid Date"){
+                    alert("Input a Valid Date");
                     return;
                 }
                 contentCreation.createTodo(todoTitle, dueDate);
