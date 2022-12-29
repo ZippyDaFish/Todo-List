@@ -249,12 +249,18 @@ const contentDisplay = (() => {
                     alert("Project Name Cannot be Empty");
                     return;
                 }
+                // Cancel if project names are the same
+                let isSameName = false;
                 tabs.projects.forEach(project => {
                     if(projectName == project.projectName){
-                        alert("Project Names Cannot be the Same");
-                        return;
+                        isSameName = true;
                     }
                 });
+                if(isSameName){
+                    alert("Project Names Cannot be the Same");
+                    return;
+                }
+                
                 contentCreation.createProject(projectName);
                 contentDisplay.displayProjectAdd(false);
             });
