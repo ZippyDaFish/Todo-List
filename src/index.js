@@ -8,6 +8,10 @@ let tabs = {
 };
 let currentTab;
 
+function storeProject(project){
+    window.localStorage.setItem(project.projectName, JSON.stringify(project));
+}
+
 function gatherTodosToday(){
     let dailyTodos = [];
     tabs.inbox.forEach(todo => {
@@ -106,6 +110,7 @@ const contentCreation = (() => {
         //create js project
         const projectObject = createProjectObject(projectName, newProjectDiv);
         tabs.projects.push(projectObject);
+        storeProject(projectObject);
     };
     const createTodo = (todoTitle, newDate) => {
         //create HTML todo
@@ -244,6 +249,12 @@ const contentDisplay = (() => {
                     alert("Project Name Cannot be Empty");
                     return;
                 }
+                tabs.projects.forEach(project => {
+                    if(projectName == project.projectName){
+                        alert("Project Names Cannot be the Same");
+                        return;
+                    }
+                });
                 contentCreation.createProject(projectName);
                 contentDisplay.displayProjectAdd(false);
             });
