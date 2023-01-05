@@ -9,7 +9,11 @@ let tabs = {
 let currentTab;
 
 function storeProject(project){
-    window.localStorage.setItem(project.projectName, JSON.stringify(project));
+    window.localStorage.setItem("p" + project.projectName, JSON.stringify(project));
+    console.log("Stored", project.projectName);
+}
+function storeTodo(todo){
+    window.localStorage.setItem("t" + todo.todoTitle, JSON.stringify(todo));
 }
 
 function gatherTodosToday(){
@@ -143,6 +147,7 @@ const contentCreation = (() => {
         //create js todo
         const todoObject = createTodoObject(title, dueDate, false, newTodoDiv);
         currentTab.push(todoObject);
+        storeTodo(todoObject);
     };
     return{createProject, createTodo};
 })();
