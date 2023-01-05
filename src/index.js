@@ -13,7 +13,8 @@ function storeProject(project){
     console.log("Stored", project.projectName);
 }
 function storeTodo(todo){
-    window.localStorage.setItem("t" + todo.todoTitle, JSON.stringify(todo));
+    window.localStorage.setItem("t" + todo.title, JSON.stringify(todo));
+    console.log("Stored", todo.title);
 }
 
 function gatherTodosToday(){
