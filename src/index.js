@@ -47,13 +47,11 @@ function gatherTodosWeekly(){
             }
         });
     });
-    console.log(weeklyTodos);
     return weeklyTodos;
 }
 
 function isValidDate(month, day, year) {
     const parsed = parse(`${month}/${day}/${year}`, 'P', new Date());
-    console.log(parsed);
     return parsed;
 }
 
@@ -216,9 +214,7 @@ const contentDisplay = (() => {
                     document.getElementById('date-add-input1').value,
                     document.getElementById('date-add-input2').value
                 ]
-                console.log(userDates);
                 let dueDate = isValidDate(userDates[0], userDates[1], userDates[2]);
-                console.log(dueDate);
                 if(todoTitle == ""){
                     alert("Todo Title Cannot be Empty");
                     return;
