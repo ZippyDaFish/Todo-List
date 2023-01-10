@@ -9,16 +9,18 @@ let tabs = {
 let currentTab;
 
 function storeProject(project){
-    window.localStorage.setItem("p" + project.projectName, JSON.stringify(project));
+    window.localStorage.setItem(project.projectName, JSON.stringify(project));
     console.log("Stored", project.projectName);
 }
 function storeTodo(todo){
-    window.localStorage.setItem("t" + todo.title, JSON.stringify(todo));
+    window.localStorage.setItem(todo.title, JSON.stringify(todo));
     console.log("Stored", todo.title);
 }
 
-function parseStoredProjects(){
-
+function loadStoredProjects(storedProjects){
+    storedProjects.forEach(project => {
+        contentCreation.createProject(project.projectName);
+    });
 }
 function grabLocalStorage(){
     let values = [];
@@ -41,6 +43,7 @@ function grabLocalStorage(){
         }
     });
     console.log("Projects:", storedProjects);
+    loadStoredProjects(storedProjects);
     console.log("Todos:", storedTodos);
 }
 
