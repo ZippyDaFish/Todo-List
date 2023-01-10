@@ -17,15 +17,31 @@ function storeTodo(todo){
     console.log("Stored", todo.title);
 }
 
+function parseStoredProjects(){
+
+}
 function grabLocalStorage(){
-    let archive = {};
+    let values = [];
     let keys = Object.keys(localStorage);
     let i = keys.length;
 
     while(i--){
-        archive[keys[i]] = localStorage.getItem(keys[i]);
+        values.push(localStorage.getItem(keys[i]));
     }
-    console.log(archive);
+    // split values into projects and todos
+    let storedProjects = [];
+    let storedTodos = [];
+    values.forEach(item => {
+        item = JSON.parse(item);
+        if(item.type == 'p'){
+            storedProjects.push(item);
+        }
+        else if(item.type == 't'){
+            storedTodos.push(item);
+        }
+    });
+    console.log("Projects:", storedProjects);
+    console.log("Todos:", storedTodos);
 }
 
 function gatherTodosToday(){
@@ -69,6 +85,7 @@ function isValidDate(month, day, year) {
 // Creates project objects
 function createProjectObject(name, elem){
     return{
+        type: 'p',
         projectElement: elem,
         projectName: name,
         projectTodos: []
@@ -77,6 +94,7 @@ function createProjectObject(name, elem){
 // Creates todo objects
 function createTodoObject(title, date, status, elem){
     return{
+        type: 't',
         todoElement: elem,
         title: title,
         date: date,
