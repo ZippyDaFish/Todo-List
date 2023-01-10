@@ -17,6 +17,17 @@ function storeTodo(todo){
     console.log("Stored", todo.title);
 }
 
+function grabLocalStorage(){
+    let archive = {};
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
+
+    while(i--){
+        archive[keys[i]] = localStorage.getItem(keys[i]);
+    }
+    console.log(archive);
+}
+
 function gatherTodosToday(){
     let dailyTodos = [];
     tabs.inbox.forEach(todo => {
@@ -281,3 +292,5 @@ document.getElementById('project-add-btn').addEventListener('click', function(){
 
 // display inbox tab on load
 contentDisplay.displayTab(tabs.inbox);
+
+grabLocalStorage();
