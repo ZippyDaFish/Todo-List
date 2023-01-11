@@ -7,6 +7,7 @@ let tabs = {
     projects: []
 };
 let currentTab;
+let currentProject;
 
 function storeProject(project){
     window.localStorage.setItem(project.projectName, JSON.stringify(project));
@@ -95,9 +96,10 @@ function createProjectObject(name, elem){
     };
 }
 // Creates todo objects
-function createTodoObject(title, date, status, elem){
+function createTodoObject(title, date, status, elem, tab){
     return{
         type: 't',
+        tabIdentifier: tab,
         todoElement: elem,
         title: title,
         date: date,
@@ -120,6 +122,7 @@ const contentDeletion = (() => {
     const deleteTodo = (todoObject) => {
         let todoIndex = currentTab.indexOf(todoObject);
         currentTab.splice(todoIndex, 1);
+        localStorage.removeItem(todoObject.title);
         todoObject.todoElement.remove();
     };
     return{deleteProject, deleteTodo};
@@ -137,6 +140,7 @@ const contentCreation = (() => {
         newProject.classList.add("button-main", "rounded-corners", "button-project");
         newProject.innerText = projectName;
         newProject.addEventListener('click', function(){contentDisplay.displayTab(tabs.projects[tabs.projects.indexOf(projectObject)].projectTodos)});
+        newProject.addEventListener('click', function(){currentProject = tabs.projects[tabs.projects.indexOf(projectObject)]});
         newProjectDiv.appendChild(newProject);
         //create project del button
         const newProjectDel = document.createElement("button");
@@ -178,7 +182,13 @@ const contentCreation = (() => {
         newTodoDiv.appendChild(delElement);
 
         //create js todo
-        const todoObject = createTodoObject(title, dueDate, false, newTodoDiv);
+        let todoObject;
+        if(currentTab == tabs.inbox){
+            todoObject = createTodoObject(title, dueDate, false, newTodoDiv, "Inbox");
+        }
+        else{
+            todoObject = createTodoObject(title, dueDate, false, newTodoDiv, currentProject.projectName);
+        }
         currentTab.push(todoObject);
         storeTodo(todoObject);
     };
