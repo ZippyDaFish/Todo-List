@@ -23,6 +23,11 @@ function loadStoredProjects(storedProjects){
         contentCreation.createProject(project.projectName);
     });
 }
+function loadStoredTodos(storedTodos){
+    storedTodos.forEach(todo => {
+        contentCreation.createTodo(todo.title, todo.date);
+    });
+}
 function grabLocalStorage(){
     let values = [];
     let keys = Object.keys(localStorage);
@@ -43,9 +48,8 @@ function grabLocalStorage(){
             storedTodos.push(item);
         }
     });
-    console.log("Projects:", storedProjects);
     loadStoredProjects(storedProjects);
-    console.log("Todos:", storedTodos);
+    loadStoredTodos(storedTodos);
 }
 
 function gatherTodosToday(){
@@ -160,7 +164,13 @@ const contentCreation = (() => {
         newTodoDiv.classList.add("todo-container", "flex-container", 'rounded-corners');
 
         const title = todoTitle; 
-        let dueDate = format(newDate, 'MM-dd-yyyy');
+        let dueDate;
+        if(typeof newDate === 'string' || newDate instanceof String){
+            dueDate = newDate;
+        }
+        else{
+            dueDate = format(newDate, 'MM-dd-yyyy');
+        }
 
         //create element of todo and set content to user input
         const statusElement = document.createElement("input");
