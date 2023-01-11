@@ -25,7 +25,7 @@ function loadStoredProjects(storedProjects){
 }
 function loadStoredTodos(storedTodos){
     storedTodos.forEach(todo => {
-        contentCreation.createTodo(todo.title, todo.date);
+        contentCreation.createTodo(todo.title, todo.date, true, todo.tabIdentifier);
     });
 }
 function grabLocalStorage(){
@@ -157,7 +157,7 @@ const contentCreation = (() => {
         tabs.projects.push(projectObject);
         storeProject(projectObject);
     };
-    const createTodo = (todoTitle, newDate) => {
+    const createTodo = (todoTitle, newDate, isFromStorage, tabIdentity) => {
         //create HTML todo
         const newTodoDiv = document.createElement("div");
         document.getElementById("todo-container").insertBefore(newTodoDiv, document.getElementById("todo-add-div"));
@@ -199,7 +199,22 @@ const contentCreation = (() => {
         else{
             todoObject = createTodoObject(title, dueDate, false, newTodoDiv, currentProject.projectName);
         }
-        currentTab.push(todoObject);
+        if(isFromStorage){
+            todoObject.tabIdentifier = tabIdentity;
+            if(tabIdentity == "Inbox"){
+                tabs.inbox.push(todoObject)
+            }
+            else{
+                tabs.projects.forEach(project => {
+                    if(tabIdentity == project.projectName){
+                        project.projectTodos.push(todoObject);
+                    }
+                });
+            }
+        }
+        else{
+            currentTab.push(todoObject);
+        }
         storeTodo(todoObject);
     };
     return{createProject, createTodo};
@@ -277,7 +292,7 @@ const contentDisplay = (() => {
                     alert("Input a Valid Date");
                     return;
                 }
-                contentCreation.createTodo(todoTitle, dueDate);
+                contentCreation.createTodo(todoTitle, dueDate, false, false);
                 contentDisplay.displayTodoAdd(false);
             });
             document.getElementById('todo-add-btn-cancel').addEventListener('click', function(){contentDisplay.displayTodoAdd(false)});
@@ -337,3 +352,5 @@ document.getElementById('project-add-btn').addEventListener('click', function(){
 contentDisplay.displayTab(tabs.inbox);
 
 grabLocalStorage();
+
+contentDisplay.displayTab(tabs.inbox);
