@@ -112,6 +112,8 @@ const contentDeletion = (() => {
         let projectIndex = tabs.projects.indexOf(projectObject);
         // del project in storage
         tabs.projects.splice(projectIndex, 1);
+        // del project in localstorage
+        localStorage.removeItem(projectObject.projectName);
         // del project in HTML
         projectObject.projectElement.remove();
     };
